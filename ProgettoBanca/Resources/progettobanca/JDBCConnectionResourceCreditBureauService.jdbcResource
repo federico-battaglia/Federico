@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_c4ersXM6Eeq4e4lMgLMdIw" name="progettobanca.JDBCConnectionResourceCreditBureauService" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_c4y0wHM6Eeq4e4lMgLMdIw" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_c4y0wXM6Eeq4e4lMgLMdIw" username="postgres" password="#!hzA0vrDp2/LmnIjdqlvQJPoWF3xgPN3o">
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_c4y0wnM6Eeq4e4lMgLMdIw" jdbcDriver="tibcosoftwareinc.jdbc.postgresql.PostgreSQLDriver" dbURL="jdbc:tibcosoftwareinc:postgresql://localhost:5432;DatabaseName=Credit Bureau Store"/>
+  </jndi:configuration>
+</jndi:namedResource>

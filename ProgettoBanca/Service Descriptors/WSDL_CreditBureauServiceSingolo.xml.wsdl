@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:tibex="http://www.tibco.com/bs3.2/extensions" 
+xmlns:tns="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+name="WSDLProgettoBanca" 
+targetNamespace="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl" 
+tibex:src="file:/I:/Users/Federico/Desktop/ProgettoBanca/WSDL_CreditBureauServiceSingolo.xml">
+
+	<wsdl:types>
+	
+		<xsd:schema xmlns="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl"
+		elementFormDefault="qualified" 		
+		targetNamespace="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl"> 
+
+				<xsd:element name="LoanStartDate" type="xsd:date"/>
+				<xsd:element name="LoanAmount" type="xsd:integer"/>
+				<xsd:element name="LoanMonthlyPayment" type="xsd:integer"/>
+				<xsd:element name="LoanStatus" type="xsd:string"/>
+				<xsd:element name="LoanLastPaymentDate" type="xsd:date"/>
+				<xsd:element name="CustomerCreditHistory" type="tns:CustomerCreditHistoryComp"/>
+				
+				
+				<xsd:complexType name="CustomerCreditHistoryComp">
+					<xsd:sequence>
+						<xsd:element ref="LoanStartDate"/>
+						<xsd:element ref="LoanAmount"/>
+						<xsd:element ref="LoanMonthlyPayment"/>
+						<xsd:element ref="LoanStatus"/>
+						<xsd:element ref="LoanLastPaymentDate"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				
+				<xsd:element name="Name" type="xsd:string"/>
+				<xsd:element name="Surname" type="xsd:string"/>
+				<xsd:element name="Age" type="xsd:integer"/>
+				<xsd:element name="AnnualSalary" type="xsd:integer"/>
+				<xsd:element name="TaxCode" type="xsd:string"/>
+				<xsd:element name="Amount" type="xsd:integer"/>
+				<xsd:element name="PreferredNumberOfPayments" type="xsd:integer"/>
+				<xsd:element name="CustomerInfo" type="tns:CustomerInfoComp"/>
+				
+				<xsd:complexType name="CustomerInfoComp">
+					<xsd:sequence>
+						<xsd:element ref="Name"/>
+						<xsd:element ref="Surname"/>
+						<xsd:element ref="Age"/>
+						<xsd:element ref="AnnualSalary"/>
+						<xsd:element ref="TaxCode"/>
+						
+						<xsd:element ref="Amount"/>
+						<xsd:element ref="PreferredNumberOfPayments"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				
+				<xsd:element name="BankName" type="xsd:string"/>
+				<xsd:element name="Taeg" type="xsd:string"/>
+				<xsd:element name="Tan" type="xsd:string"/>
+				<xsd:element name="PaymentsNumber" type="xsd:string"/>
+				<xsd:element name="MonthlyAmount" type="xsd:string"/>
+				<xsd:element name="BankCondition" type="tns:BankConditionComp"/>
+				
+				<xsd:element name="callBankCondition">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" name="BankCondition" type="tns:BankConditionComp"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+						
+					
+				    <xsd:element name="callBankConditionElement" type="tns:callBankConditionType"/>
+					<xsd:complexType name="callBankConditionType">
+						<xsd:sequence>
+							<xsd:element maxOccurs="unbounded" name="BankConditionElement" type="tns:BankConditionComp"/>
+						</xsd:sequence>
+					</xsd:complexType>
+ 	
+				<xsd:complexType name="BankConditionComp">
+					<xsd:sequence>
+						<xsd:element ref="BankName"/>
+						<xsd:element ref="Taeg"/>
+						<xsd:element ref="Tan"/>
+						<xsd:element ref="PaymentsNumber"/>
+						<xsd:element ref="MonthlyAmount"/>
+					</xsd:sequence>
+				</xsd:complexType>
+				
+		</xsd:schema>
+		
+	</wsdl:types>
+	
+	
+	<wsdl:message name="LoanRequest">
+		<wsdl:part element="tns:CustomerInfo" name="InformazioniCliente"/>
+	</wsdl:message>
+	
+	<wsdl:message name="LoanResponse">
+		<wsdl:part element="tns:callBankCondition" name="CondizioniBanca"/>
+	</wsdl:message>
+	
+	
+		<wsdl:portType name="LoanService_PortType">
+	
+		<wsdl:operation name="LoanService_Operation">
+		
+			<wsdl:input message="tns:LoanRequest"/>
+			<wsdl:output message="tns:LoanResponse"/>
+			
+		</wsdl:operation>
+
+	</wsdl:portType>
+	
+</wsdl:definitions>

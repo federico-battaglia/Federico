@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl" 
+elementFormDefault="qualified" 
+targetNamespace="http://www.examples.com/wsdl/WSDLProgettoBanca.wsdl">
+ 
+ 
+ 
+ 				<element name="CallCustomerCreditHistory" type="tns:CallCustomerCreditHistoryType"/>
+					<complexType name="CallCustomerCreditHistoryType">
+						<sequence>
+							<element maxOccurs="unbounded" minOccurs="0" name="CustomerCreditHistory" type="tns:CustomerCreditHistoryComp"/>
+						</sequence>
+					</complexType>
+						
+				
+				
+				
+				<complexType name="CustomerCreditHistoryComp">
+					<sequence>
+						<element name="LoanStartDate" type="date"/>
+						<element name="LoanAmount" type="integer"/>
+						<element name="LoanMonthlyPayment" type="integer"/>
+						<element name="LoanStatus" type="string"/>
+						<element name="LoanLastPaymentDate" type="date"/>
+					</sequence>
+				</complexType>
+				
+				
+				<element name="CustomerInfo" type="tns:CustomerInfoComp"/>
+				
+				<complexType name="CustomerInfoComp">
+					<sequence>
+						<element name="Name" type="string"/>
+						<element name="Surname" type="string"/>
+						<element name="Age" type="integer"/>
+						<element name="AnnualSalary" type="integer"/>
+						<element name="TaxCode" type="string"/>
+						<element name="Amount" type="integer"/>
+						<element name="PreferredNumberOfPayments" type="integer"/>
+					</sequence>
+				</complexType>
+				
+				
+				<element name="callBankCondition" type="tns:callBankConditionType"/>
+					<complexType name="callBankConditionType">
+						<sequence>
+							<element maxOccurs="unbounded" name="BankCondition" type="tns:BankConditionComp"/>
+						</sequence>
+					</complexType>
+				
+						
+					
+				
+				<complexType name="BankConditionComp">
+					<sequence>
+						<element name="BankName" type="string"/>
+						<element name="Taeg" type="string"/>
+						<element name="Tan" type="string"/>
+						<element name="PaymentsNumber" type="string"/>
+						<element name="MonthlyAmount" type="string"/>
+					</sequence>
+				</complexType>
+				
+ 	
+
+
+    
+    
+    <element name="callBankInfo" type="tns:CallBankInfoType"/>
+    
+	 	<complexType name="CallBankInfoType">
+		 	<sequence>
+		 		<element maxOccurs="unbounded" name="InfoBanca" type="tns:BankRequestType"/>
+		 	</sequence>
+	 	</complexType>
+ 	
+    
+	    <complexType name="BankRequestType">
+	    	<sequence>
+	    		<element name="BankName" type="string"/>
+	    		<element name="JmsQueueName" type="string"/>
+	    	</sequence>
+	    </complexType>
+    
+
+	    <element name="BankRequest" type="tns:richiestaBanca"></element>
+
+
+	    <complexType name="richiestaBanca">
+	    	<sequence>
+	    		<element minOccurs="1" maxOccurs="1" name="CustomerInfo" type="tns:CustomerInfoComp"></element>
+	    		<element minOccurs="0" maxOccurs="unbounded" name="CreditHistory" type="tns:CustomerCreditHistoryComp"></element>
+	    	</sequence>
+	    </complexType>
+
+</schema>
